@@ -1,11 +1,19 @@
 from rest_framework.viewsets import ModelViewSet
-from event.serializeres import EventSerializer
-from event.models import Event
+from event.serializeres import EventSerializer, BookingSerializer
+from event.models import Event, Booking
 from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from rest_framework.response import Response
 
+
+
+class BookingApiView(ModelViewSet):
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [SessionAuthentication]
 
 
 class EventApiView(ModelViewSet):
@@ -25,4 +33,3 @@ class EventApiView(ModelViewSet):
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-    # pagination_class = StandardAppPagination
