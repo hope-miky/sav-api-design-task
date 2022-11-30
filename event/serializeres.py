@@ -2,6 +2,8 @@ from rest_framework import serializers
 from event.models import  Event, Booking
 
 class EventSerializer(serializers.ModelSerializer):
+
+    room = serializers.IntegerField()
     class Meta:
         model = Event
         fields = "__all__"
