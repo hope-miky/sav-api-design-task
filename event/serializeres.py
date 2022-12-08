@@ -27,4 +27,6 @@ class BookingSerializer(serializers.ModelSerializer):
         model = Booking
         fields = "__all__"
         # exclude = ('owner',)
-        
+    
+class PlaceHolderSerializer(serializers.Serializer):
+    ...

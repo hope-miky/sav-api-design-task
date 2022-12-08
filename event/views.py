@@ -1,6 +1,6 @@
 from typing import Any
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
-from event.serializeres import EventSerializer, BookingSerializer, EventModelSerializer
+from event.serializeres import EventSerializer, BookingSerializer, EventModelSerializer, PlaceHolderSerializer
 from event.models import Event, Booking
 from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -40,10 +40,7 @@ class BookingApiView(generics.GenericAPIView):
 class EventApiView(generics.GenericAPIView):
 
     queryset = Event.objects.all()
-    serializer_class = EventModelSerializer
-
-    permission_classes = [IsAuthenticated]
-    authentication_classes = [SessionAuthentication]
+    serializer_class = PlaceHolderSerializer
 
     def get(self, request):
         try:
@@ -51,13 +48,15 @@ class EventApiView(generics.GenericAPIView):
             return Response({ "data": events }, status=status.HTTP_200_OK)
 
         except BaseException as e:
-            print("")
+            print(traceback.format_exc())
+            return Response({ "error": f"{e}" }, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 class CancelEventApiView(generics.GenericAPIView):
 
     queryset = Event.objects.all()
-    serializer_class = EventModelSerializer
+    serializer_class = PlaceHolderSerializer
 
     permission_classes = [IsAuthenticated]
     authentication_classes = [SessionAuthentication]
@@ -75,7 +74,7 @@ class CancelEventApiView(generics.GenericAPIView):
 
         except BaseException as e:
             print("")
-
+            return Response({ "error": f"{e}" }, status=status.HTTP_400_BAD_REQUEST)
 
 
 
@@ -148,7 +147,7 @@ class CreateEventApiView(generics.GenericAPIView):
 
 class CancelBooking(generics.GenericAPIView):
     
-    serializer_class = EventSerializer
+    serializer_class = PlaceHolderSerializer
 
     permission_classes = [IsAuthenticated]
     authentication_classes = [SessionAuthentication]
