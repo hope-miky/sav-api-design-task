@@ -26,8 +26,8 @@ urlpatterns = [
     path('event/', include('event.urls')),
     path('users/', include('user_management.urls')),
     path('openapi', get_schema_view(
-        title="Your Project",
-        description="API for all things"
+        title="SAV Assignment API",
+        description="Assignment by tesfamichael molla"
     ), name='openapi-schema'),
     path('docs/', TemplateView.as_view(
         template_name='swagger-ui.html',
