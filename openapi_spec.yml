@@ -1,0 +1,413 @@
+openapi: 3.0.2
+info:
+  title: SAV Assignment API
+  version: ''
+  description: Assignment by tesfamichael molla
+paths:
+  /rooms/:
+    get:
+      operationId: listRooms
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Room'
+          description: ''
+      tags:
+      - rooms
+    post:
+      operationId: createRoom
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Room'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Room'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Room'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'
+          description: ''
+      tags:
+      - rooms
+  /rooms/{id}/:
+    get:
+      operationId: retrieveRoom
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this room.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'
+          description: ''
+      tags:
+      - rooms
+    put:
+      operationId: updateRoom
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this room.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Room'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Room'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Room'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'
+          description: ''
+      tags:
+      - rooms
+    patch:
+      operationId: partialUpdateRoom
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this room.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Room'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Room'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Room'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'
+          description: ''
+      tags:
+      - rooms
+    delete:
+      operationId: destroyRoom
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this room.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - rooms
+  /event/bookings/:
+    get:
+      operationId: listBookings
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Booking'
+          description: ''
+      tags:
+      - event
+    delete:
+      operationId: destroyBooking
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - event
+  /event/:
+    get:
+      operationId: listEvents
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlaceHolder'
+          description: ''
+      tags:
+      - event
+  /event/create/:
+    post:
+      operationId: createEvent
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Event'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Event'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+          description: ''
+      tags:
+      - event
+  /users/login/:
+    post:
+      operationId: createAuthToken
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthToken'
+          description: ''
+      tags:
+      - users
+  /event/booking/cancel/{id}:
+    put:
+      operationId: updatePlaceHolder
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlaceHolder'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PlaceHolder'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PlaceHolder'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaceHolder'
+          description: ''
+      tags:
+      - event
+  /event/cancel/{id}:
+    put:
+      operationId: updateEvent
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this event.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlaceHolder'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PlaceHolder'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PlaceHolder'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaceHolder'
+          description: ''
+      tags:
+      - event
+components:
+  schemas:
+    Room:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+          maxLength: 200
+        booked:
+          type: boolean
+      required:
+      - name
+      - description
+      - booked
+    Booking:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        date:
+          type: string
+          format: date
+        number_of_people:
+          type: integer
+        note:
+          type: string
+          maxLength: 200
+        table_settings:
+          type: string
+          maxLength: 200
+        status:
+          enum:
+          - Active
+          - Canceled
+          type: string
+        room:
+          type: integer
+        event:
+          type: integer
+      required:
+      - date
+      - number_of_people
+      - note
+      - table_settings
+      - room
+      - event
+    PlaceHolder:
+      type: object
+      properties: {}
+    Event:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        room:
+          type: integer
+        num_peoples:
+          type: integer
+        note:
+          type: string
+        table_settings:
+          type: string
+        status:
+          type: string
+        name:
+          type: string
+          description: help text for name
+          maxLength: 200
+        description:
+          type: string
+          maxLength: 500
+        from_date:
+          type: string
+          format: date
+        from_time:
+          type: string
+        to_time:
+          type: string
+        to_date:
+          type: string
+          format: date
+        owner:
+          type: integer
+      required:
+      - room
+      - num_peoples
+      - note
+      - table_settings
+      - status
+      - name
+      - description
+      - from_date
+      - from_time
+      - to_time
+      - to_date
+      - owner
+    AuthToken:
+      type: object
+      properties:
+        username:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+        token:
+          type: string
+          readOnly: true
+      required:
+      - username
+      - password
